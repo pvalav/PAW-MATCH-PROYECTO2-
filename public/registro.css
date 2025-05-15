@@ -1,0 +1,84 @@
+body{
+background-color: rgb(255, 187, 0);
+
+}
+#pwml2{
+    width: 150px;
+}
+.navbar {
+    background-color: rgb(255, 187, 0);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  .btn {
+    background-color: #d95e49;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  main {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 40px;
+  }
+  
+  .form-section {
+    background-color: #ffa600;
+    padding: 30px;
+    border-radius: 40px;
+    width: 400px;
+  }
+  
+  .form-section h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    background-color: orange;
+    padding: 10px 0;
+    border-radius: 20px;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .save-btn {
+    background-color: #632e8e;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .image-section {
+    padding-left: 20px;
+  }
+  
+  .image-frame {
+    border: 20px solid #004aad;
+    display: inline-block;
+  }
+  
+  .image-frame img {
+    display: block;
+    width: 350px;
+    height: auto;
+  }
+  h2{
+    color: white;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }

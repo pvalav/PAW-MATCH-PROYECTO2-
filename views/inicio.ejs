@@ -24,7 +24,7 @@
     <div class="contenido1">
       <h1>Cada segundo cuenta.<br />PawMatch busca a tu mascota.</h1>
       <p>Regístrate y comienza tu búsqueda.</p>
-      <button class="registro1">Regístrate</button>
+      <button class="registro1" onclick="window.location.href='/registro1'">Regístrate</button>
     </div>
   </main>
 
@@ -44,5 +44,26 @@
       <a href="#"><img src="/face.png" alt="Facebook" /></a>
     </div>
   </footer>
+  <script>
+    function buscarMascota(event){
+      event.preventDefault();
+      const busqueda=document.getElementById("busqueda").value;
+      if(busqueda==btnRegistro){
+        window.location.href=`/buscar/${busqueda}`;
+      }else{
+        alert("por favor registrece");
+      }
+      
+
+      }
+
+      const btnRegistro=document.querySelector('registro1');
+      btnRegistro.addEventListener('click', function(){
+        window.location.href='/registro1';
+      });
+
+      
+    
+  </script>
 </body>
 </html>

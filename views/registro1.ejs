@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/registro.css">
+    <title><% titulo %></title>
+</head>
+<body>
+    <header class="navbar">
+    <img src="PAW MATCH LOGO.png" alt="logo" id="pwml2">
+    <button class="btn">Acerca de nosotros/ayuda</button>
+    <button class="btn">Ingresar</button>
+    <button class="btn">Registra a tu mascota</button>
+
+    <!-- FORMULARIO DE BÚSQUEDA FUNCIONAL -->
+    <form class="search-bar" onsubmit="buscarMascota(event)">
+      <input type="text" id="busqueda" placeholder="Busca a tu peludo" class="search" />
+      <button type="submit">🔍</button>
+    </form>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Regístrate</h2>
+      <form>
+        <input type="text" placeholder="Numero telefonico de whatsapp" required />
+        <input type="text" placeholder="Nombre (Usuario)" required />
+        <input type="email" placeholder="Correo electronico" required />
+        <input type="text" placeholder="Localidad" required />
+        <input type="password" placeholder="Crea una contraseña segura" required />
+        <button type="submit" class="save-btn">Guardar</button>
+      </form>
+    </section>
+    <section class="image-section">
+      <div class="image-frame">
+        <img src="/imagen de registro1.jpeg" alt="Perro simpático"/>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
