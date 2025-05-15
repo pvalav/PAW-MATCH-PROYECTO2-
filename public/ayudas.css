@@ -1,0 +1,56 @@
+body{
+     margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #ff922b;
+}
+.navbar {
+    background-color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .btn {
+    background-color: #d95e49;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  .busqueda1 {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .contenido {
+    background-color: #fcbf1e;
+    padding: 50px 20px;
+    text-align: center;
+    position: relative;
+  }
+  .piedepagina1 {
+    background-color: #ff922b;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .footer p {
+    font-weight: bold;
+    color: purple;
+    margin-bottom: 10px;
+  }
+  
+  .social-icons a img {
+    width: 40px;
+    margin-right: 10px;
+  }
+
+  #pwml1{
+    width: 150px;
+
+  }

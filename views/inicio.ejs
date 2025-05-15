@@ -9,14 +9,14 @@
 <body>
     <header class="navbar">
     <img src="/PAW MATCH LOGO.png" alt="logo" id="pwml1">
-    <button class="btn">Acerca de nosotros/ayuda</button>
+    <button class="btn" onclick="window.location.href='/ayuda'">Acerca de nosotros/ayuda</button>
     <button class="btn" onclick="window.location.href='/registro1'">Ingresar</button>
     <button class="btn" onclick="window.location.href='/registro1'">Registra a tu mascota</button>
 
 
-    <form class="busqueda1" onsubmit="buscarMascota(event)">
-      <input type="text" id="busqueda" placeholder="Busca a tu peludo" class="busqueda" />
-      <button type="submit">🔍</button>
+    <form class="busqueda1">
+      <input type="text" id="busqueda" placeholder="Busca a tu peludo" class="busqueda" onsubmit="return false;" disabled />
+      <button type="submit" disabled>🔍</button>
     </form>
   </header>
 
@@ -44,26 +44,6 @@
       <a href="#"><img src="/face.png" alt="Facebook" /></a>
     </div>
   </footer>
-  <script>
-    function buscarMascota(event){
-      event.preventDefault();
-      const busqueda=document.getElementById("busqueda").value;
-      if(busqueda==btnRegistro){
-        window.location.href=`/buscar/${busqueda}`;
-      }else{
-        alert("por favor registrece");
-      }
-      
-
-      }
-
-      const btnRegistro=document.querySelector('registro1');
-      btnRegistro.addEventListener('click', function(){
-        window.location.href='/registro1';
-      });
-
-      
-    
-  </script>
+  
 </body>
 </html>
