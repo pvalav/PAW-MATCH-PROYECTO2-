@@ -11,6 +11,9 @@ app.get("/", (req, res) => {
 app.get("/registro1",(req,res)=>{
     res.render("registro1",{titulo:"registro"});
 })
+app.get("/registro2",(req,res)=>{
+    res.render("registro2",{titulo:"registro2"});
+});
 
 app.listen(9999, () => {
   console.log("Servidor corriendo en http://localhost:9999");
