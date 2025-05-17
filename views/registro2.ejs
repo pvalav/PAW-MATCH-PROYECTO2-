@@ -9,7 +9,7 @@
 <body>
     <header class="navbar">
     <img src="PAW MATCH LOGO.png" alt="logo" id="pwmlogo">
-    <button class="btn">Acerca de nosotros/ayuda</button>
+    <button class="btn" onclick="window.location.href='/ayuda'">Acerca de nosotros/ayuda</button>
     
   <button class="btn" onclick="bontonregresa()" id="#boton1">Regresar</button>
   
@@ -23,24 +23,24 @@
   <main class="form-container">
     <h1>¡Pon datos de tu mascota aquí!</h1>
     <div class="form-content">
-      <form class="pet-form" onsubmit="return guardarFormulario(event)">
+      <form class="pet-form" method="post" action="/registro2">
         <h2>Datos de tu mascota</h2>
-        <input type="text" placeholder="Nombre" id="nombre" required />
+        <input type="text" placeholder="Nombre" id="nombre" name=""  required />
         <div class="row">
-          <input type="number" placeholder="Edad" id="edad" required />
-          <select id="tiempoEdad" required>
+          <input type="number" placeholder="Edad" id="edad" name="edad"  required />
+          <select id="tiempoEdad" name="tiempoEdad" required>
             <option value="">Tiempo</option>
             <option value="semanas">Semanas</option>
             <option value="meses">Meses</option>
             <option value="años">Años</option>
           </select>
         </div>
-        <select id="sexo" required>
+        <select id="sexo" name="sexo"  required>
           <option value="">Seleccionar sexo</option>
           <option value="macho">Macho</option>
           <option value="hembra">Hembra</option>
         </select>
-        <textarea placeholder="Características" id="caracteristicas" rows="4" required></textarea>
+        <textarea placeholder="Características" id="caracteristicas" rows="4" name="caracteristicas" required></textarea>
         <label for="fecha">Fecha:</label>
         <input type="date" id="fecha" name="fecha" required />
         <button type="submit" class="salvarbtn">Guardar</button>

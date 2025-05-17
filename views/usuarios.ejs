@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= titulo %></title>
+</head>
+<body>
+<h1><%= titulo %></h1>
+<a href="/registro1">Agregar usuario</a> | <a href="/">Inicio</a>
+
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID</th><th>Teléfono</th><th>Nombre</th><th>Correo</th><th>Localidad</th><th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% usuarios.forEach(usuario => { %>
+      <tr>
+        <td><%= usuario.id %></td>
+        <td><%= usuario.numerotel %></td>
+        <td><%= usuario.nombre %></td>
+        <td><%= usuario.correo %></td>
+        <td><%= usuario.localidad %></td>
+        <td> <% usuario.contra %></td>
+        <td>
+          <a href="/usuarios/editar/<%= usuario.id %>">Editar</a> |
+          <a href="/usuarios/eliminar/<%= usuario.id %>">Eliminar</a>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+</body>
+</html>

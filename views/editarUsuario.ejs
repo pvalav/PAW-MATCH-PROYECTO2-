@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Usuario</title>
+  <link rel="stylesheet" href="/styles.css"> <!-- si tienes CSS -->
+</head>
+<body>
+  <h1>Editar Usuario</h1>
+  <form action="/usuarios/editar/<%= usuario.id %>" method="POST">
+    <label for="numerotel">Teléfono:</label>
+    <input type="text" id="numerotel" name="numerotel" value="<%= usuario.numerotel %>" required><br>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" value="<%= usuario.nombre %>" required><br>
+
+    <label for="correo">Correo:</label>
+    <input type="email" id="correo" name="correo" value="<%= usuario.correo %>" required><br>
+
+    <label for="localidad">Localidad:</label>
+    <input type="text" id="localidad" name="localidad" value="<%= usuario.localidad %>" required><br>
+
+    <label for="contra">Contraseña:</label>
+    <input type="text" id="contra" name="contra" value="<%= usuario.contra %>" required><br>
+
+    <button type="submit">Guardar cambios</button>
+  </form>
+</body>
+</html>

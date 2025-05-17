@@ -82,12 +82,8 @@ background-color: rgb(255, 187, 0);
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
-  #span1{
-    position: absolute; 
-    right: 10px; 
-    top: 50%; 
-    transform: 
-    translateY(-50%); 
-    cursor: pointer;
-
+  .error-msg {
+    color: red;
+    margin-bottom: 10px;
+    font-weight: bold;
   }

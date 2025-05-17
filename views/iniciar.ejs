@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/iniciar3.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="navbar">
+    <img src="PAW MATCH LOGO.png" alt="logo" id="pwml2">
+    <button class="btn">Acerca de nosotros/ayuda</button>
+    <button class="btn">Registra a tu mascota</button>
+
+    <!-- FORMULARIO DE BÚSQUEDA FUNCIONAL -->
+    <form class="search-bar" onsubmit="buscarMascota(event)">
+      <input type="text" id="busqueda" placeholder="Busca a tu peludo" class="search" />
+      <button type="submit">🔍</button>
+    </form>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Iniciar Sesión</h2>
+      <% if (typeof error !== "undefined") { %>
+  <div class="error-msg"><%= error %></div>
+<% } %>
+      <form method="post" action="/iniciar">
+        
+        <input type="email" placeholder="Correo electronico"  name="correo" required/>
+        <div style="position: relative;">
+  <input type="password" placeholder="Crea una contraseña segura" name="contra" id="contra" required />
+  <span onclick="togglePassword()" id="span1">
+    👁
+        <button type="submit" class="ingresaabtn">Ingresar</button>
+      </form>
+      <a href="/registro1">¿No tienes cuenta? Regístrate</a>
+    </section>
+    <section class="image-section">
+      <div class="image-frame">
+        <img src="/gato1.jpeg" alt="gatito"/>
+      </div>
+    </section>
+  </main>
+  <script>
+    // Validar contraseña: solo mayúsculas y números, exactamente 10 caracteres
+    if (!/^[A-Z0-9]{10}$/.test(contra)) {
+      alert("La contraseña debe tener exactamente 10 caracteres con letras MAYÚSCULAS y números.");
+      return false;
+    }
+
+    // Si todo está bien, se envía el formulario
+    return true;
+  function togglePassword() {
+    const input = document.getElementById("contra");
+    const icon = document.getElementById("toggleIcon");
+    
+    if (input.type === "password") {
+      input.type = "text";
+      icon.textContent = "🙈"; // Cambia el icono
+    } else {
+      input.type = "password";
+      icon.textContent = "👁";
+    }
+  }
+  </script>
+</body>
+</html>

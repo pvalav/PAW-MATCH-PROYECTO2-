@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Editar usuario</h2>
+<form method="POST" action="/usuarios/actualizar/<%= usuario.id %>">
+  <input type="text" name="nombre" value="<%= usuario.nombre %>" required>
+  <input type="text" name="telefono" value="<%= usuario.telefono %>" required>
+  <input type="email" name="correo" value="<%= usuario.correo %>" required>
+  <input type="text" name="localidad" value="<%= usuario.localidad %>" required>
+  <input type="text" name="contrasena" value="<%= usuario.contrasena %>" required>
+  <button type="submit">Actualizar</button>
+</form>
+<a href="/usuarios">Volver</a>
+</body>
+</html>
