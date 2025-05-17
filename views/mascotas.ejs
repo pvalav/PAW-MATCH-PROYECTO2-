@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title><%= titulo %></title>
+</head>
+<body>
+  
+  <main class="contenido">
+    <h1>Lista de Mascotas Registradas</h1>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Unidad</th>
+          <th>Sexo</th>
+          <th>Características</th>
+          <th>Fecha</th>
+          <th>Imagen</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% mascotas.forEach(mascota => { %>
+          <tr>
+            <td><%= mascota.id %></td>
+            <td><%= mascota.nombre %></td>
+            <td><%= mascota.edad %></td>
+            <td><%= mascota.tiempoEdad %></td>
+            <td><%= mascota.sexo %></td>
+            <td><%= mascota.caracteristicas %></td>
+            <td><%= mascota.fecha.toISOString().split('T')[0] %></td>
+            <td>
+              <% if (mascota.imagen) { %>
+                <img src="/uploads/<%= mascota.imagen %>" alt="Imagen de <%= mascota.nombre %>" width="80" height="80" />
+              <% } else { %>
+                No disponible
+              <% } %>
+            </td>
+            <td>
+              <a href="/mascotas/editar/<%= mascota.id %>">Editar</a> |
+              <a href="/mascotas/eliminar/<%= mascota.id %>" onclick="return confirm('¿Estás seguro de eliminar esta mascota?')">Eliminar</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

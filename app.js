@@ -124,6 +124,7 @@ app.get("/usuarios/eliminar/:id", (req, res) => {
 
 // Guardar mascota (Create)
 app.post("/registro2", (req, res) => {
+  console.log(req.body);
   const { nombre, edad, tiempoEdad, sexo, caracteristicas, fecha } = req.body;
 
   const sql = "INSERT INTO mascotas (nombre, edad, tiempoEdad, sexo, caracteristicas, fecha) VALUES (?, ?, ?, ?, ?, ?)";
