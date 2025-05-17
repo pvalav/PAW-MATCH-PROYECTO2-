@@ -31,6 +31,14 @@ app.get("/registro1",(req,res)=>{
 });
 
 
+app.get("/volveracasa", (req, res) => {
+  res.render("volveracasa", { titulo: "¡Ayúdame a volver a casa!" });
+});
+
+
+
+
+
 app.listen(9999, () => {
   console.log("Servidor corriendo en http://localhost:9999");
 });
