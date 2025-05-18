@@ -9,76 +9,86 @@
 <body>
     <header class="navbar">
     <img src="PAW MATCH LOGO.png" alt="logo" id="pwml2">
-    <button class="btn" onclick="window.location.href='/ayuda'" >Acerca de nosotros/ayuda</button>
-    <button class="btn" onclick="window.location.href='/iniciar'" >Ingresar</button>
-            <button class="btn" onclick="window.location.href='/'">Regresar</button>
+    <button class="btn" onclick="window.location.href='/ayuda'">Acerca de nosotros/ayuda</button>
+    <button class="btn" onclick="window.location.href='/iniciar'">Ingresar</button>
+    <button class="btn" onclick="window.location.href='/'">Regresar</button>
 
-
-    <form class="search-bar" >
-      <input type="text" id="busqueda" placeholder="Busca a tu peludo" class="search" disabled/> <button type="submit" disabled>🔍</button>
+    <form class="search-bar">
+      <input type="text" id="busqueda" placeholder="Busca a tu peludo" class="search" disabled/>
+      <button type="submit" disabled>🔍</button>
     </form>
   </header>
 
   <main>
     <section class="form-section">
       <h2>Regístrate</h2>
+
+      <% if (typeof error !== "undefined") { %>
+        <div style="color: red; font-weight: bold; margin-bottom: 10px; text-align: center;">
+          <%= error %>
+        </div>
+      <% } %>
+
       <form method="post" action="/registro1" id="formRegistro" onsubmit="return validarFormulario()">
-        <input type="text" placeholder="Numero telefonico de whatsapp"  name="numerotel" id="numerotel"  required />
-        <input type="text" placeholder="Nombre (Usuario)" name="nombre" id="nombre"  required />
-        <input type="email" placeholder="Correo electronico"name="correo" id="correo" required />
+        <input type="text" placeholder="Numero telefonico de whatsapp" name="numerotel" id="numerotel" required />
+        <input type="text" placeholder="Nombre (Usuario)" name="nombre" id="nombre" required />
+        <input type="email" placeholder="Correo electronico" name="correo" id="correo" required />
         <input type="text" placeholder="Localidad" name="localidad" id="localidad" required />
+        
         <div style="position: relative;">
-  <input type="password" placeholder="Crea una contraseña segura" name="contra" id="contra" required />
-  <span onclick="contraseñaD()" id="span1">
-    👁
-  </span>
-</div>
+          <input type="password" placeholder="Crea una contraseña segura" name="contra" id="contra" required />
+          <span onclick="contraseñaD()" id="toggleIcon" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;">👁</span>
+        </div>
+
         <button type="submit" class="salvarbtn">Guardar</button>
       </form>
+
       <a href="/iniciar">¿Ya tienes cuenta? Inicia sesión</a>
     </section>
+
     <section class="image-section">
       <div class="image-frame">
         <img src="/imagen de registro1.jpeg" alt="Perro simpático"/>
       </div>
     </section>
   </main>
+
   <script>
-  function validarFormulario() {
-    const nombre = document.getElementById('nombre').value;
-    const numerotel = document.getElementById('numerotel').value;
-    const contra = document.getElementById('contra').value;
+    function validarFormulario() {
+      const nombre = document.getElementById('nombre').value;
+      const numerotel = document.getElementById('numerotel').value;
+      const contra = document.getElementById('contra').value;
 
-    if (!/^[A-Za-z\s]+$/.test(nombre)) {
-      alert("El nombre solo debe contener letras.");
-      return false;
+      if (!/^[A-Za-z\s]+$/.test(nombre)) {
+        alert("El nombre solo debe contener letras.");
+        return false;
+      }
+
+      if (!/^\d{10}$/.test(numerotel)) {
+        alert("El número de teléfono debe contener exactamente 10 dígitos.");
+        return false;
+      }
+
+      if (!/^[A-Z0-9]{10}$/.test(contra)) {
+        alert("La contraseña debe tener exactamente 10 caracteres con letras MAYÚSCULAS y números.");
+        return false;
+      }
+
+      return true;
     }
 
-    if (!/^\d{10}$/.test(numerotel)) {
-      alert("El número de teléfono debe contener exactamente 10 dígitos.");
-      return false;
-    }
+    function contraseñaD() {
+      const input = document.getElementById("contra");
+      const icon = document.getElementById("toggleIcon");
 
-    if (!/^[A-Z0-9]{10}$/.test(contra)) {
-      alert("La contraseña debe tener exactamente 10 caracteres con letras MAYÚSCULAS y números.");
-      return false;
+      if (input.type === "password") {
+        input.type = "text";
+        icon.textContent = "🙈";
+      } else {
+        input.type = "password";
+        icon.textContent = "👁";
+      }
     }
-
-    
-    return true;
-  }
-  function contraseñaD() {
-    const input = document.getElementById("contra");
-    const icon = document.getElementById("toggleIcon");
-    
-    if (input.type === "password") {
-      input.type = "text";
-      icon.textContent = "👁️";
-    } else {
-      input.type = "password";
-      icon.textContent = "👁";
-    }
-  }
-</script>
+  </script>
 </body>
 </html>

@@ -13,8 +13,7 @@
         <button class="btn" onclick="window.location.href='/'">Regresar</button>
 
 
-    
-    <form class="search-bar">
+    <form class="search-bar" >
       <input type="text" id="busqueda" placeholder="Busca a tu peludo" class="search" disabled/><button type="submit" disabled>🔍</button>
     </form>
   </header>
@@ -26,14 +25,19 @@
   <div class="error-msg"><%= error %></div>
 <% } %>
       <form method="post" action="/iniciar">
-        
-        <input type="email" placeholder="Correo electronico"  name="correo" required/>
-        <div style="position: relative;">
-  <input type="password" placeholder="Crea una contraseña segura" name="contra" id="contra" required />
-  <span onclick="contraseñaD()" id="span1">
-    👁
-        <button type="submit" class="ingresaabtn">Ingresar</button>
-      </form>
+  <input type="email" placeholder="Correo electrónico" name="correo" required />
+  
+  <div style="position: relative;">
+    <input type="password" placeholder="Crea una contraseña segura" name="contra" id="contra" required />
+    
+    <!-- Ícono de ojito -->
+    <span onclick="contraseñaD()" id="toggleIcon" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;">
+      👁
+    </span>
+  </div>
+
+  <button type="submit" class="ingresaabtn">Ingresar</button>
+</form>
       <a href="/registro1">¿No tienes cuenta? Regístrate</a>
     </section>
     <section class="image-section">
@@ -43,23 +47,32 @@
     </section>
   </main>
   <script>
-    if (!/^[A-Z0-9]{10}$/.test(contra)) {
-      alert("La contraseña debe tener exactamente 10 caracteres con letras MAYÚSCULAS y números.");
-      return false;
-    }
-    return true;
+  
   function contraseñaD() {
     const input = document.getElementById("contra");
     const icon = document.getElementById("toggleIcon");
-    
+
     if (input.type === "password") {
       input.type = "text";
-      icon.textContent = "👁️"; 
+      icon.textContent = "🙈";
     } else {
       input.type = "password";
       icon.textContent = "👁";
     }
   }
-  </script>
+
+  
+  document.querySelector("form").addEventListener("submit", function (e) {
+    const contraInput = document.getElementById("contra");
+    const valor = contraInput.value;
+
+    const letras = /^[A-Z0-9]{10}$/;
+
+    if (!letras.test(valor)) {
+      alert("La contraseña debe tener exactamente 10 caracteres con letras MAYÚSCULAS y números.");
+      e.preventDefault(); 
+    }
+  });
+</script>
 </body>
 </html>

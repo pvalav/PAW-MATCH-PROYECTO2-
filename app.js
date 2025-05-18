@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 
-// --- Páginas básicas ---
+
 app.get("/", (req, res) => {
   res.render("inicio", { titulo: "Inicio" });
 });
@@ -43,14 +43,22 @@ app.get("/iniciar", (req, res) => {
   res.render("iniciar", { titulo: "Iniciar Sesión" });
 });
 
-// --- CRUD USUARIOS ---
 
-// Guardar usuario (Create)
 app.post("/registro1", (req, res) => {
   console.log(req.body);
   const { numerotel, nombre, correo, localidad, contra } = req.body;
 
-  // Verificar si el correo o el número ya existen
+  const nombreValido = /^[A-Za-z\s]+$/.test(nombre);
+  const telefonoValido = /^\d{10}$/.test(numerotel);
+  const contraValida = /^[A-Z0-9]{10}$/.test(contra);
+
+  if (!nombreValido || !telefonoValido || !contraValida) {
+    return res.render("registro1", {
+      titulo: "Registro Usuario",
+      error: "Datos inválidos: revisa que el nombre solo tenga letras, el teléfono tenga 10 dígitos y la contraseña tenga 10 caracteres con mayúsculas y números"
+    });
+  }
+
   const verificarSql = "SELECT * FROM usuarios WHERE correo = ? OR numerotel = ?";
   db.query(verificarSql, [correo, numerotel], (err, results) => {
     if (err) {
@@ -59,10 +67,12 @@ app.post("/registro1", (req, res) => {
     }
 
     if (results.length > 0) {
-      return res.send("El correo o número de teléfono ya están registrados");
+      return res.render("registro1", {
+        titulo: "Registro Usuario",
+        error: "El correo o número de teléfono ya están registrados"
+      });
     }
 
-    // Si no existe, insertar nuevo usuario
     const sql = "INSERT INTO usuarios (numerotel, nombre, correo, localidad, contra) VALUES (?, ?, ?, ?, ?)";
     db.query(sql, [numerotel, nombre, correo, localidad, contra], (err, result) => {
       if (err) {
@@ -70,12 +80,13 @@ app.post("/registro1", (req, res) => {
         return res.send("Error al registrar usuario");
       }
 
-      res.redirect("/registro2"); // redirige a la página de registro de mascotas
+      res.redirect("/registro2");
     });
   });
 });
 
-// Listar usuarios (Read)
+
+
 app.get("/usuarios", (req, res) => {
   db.query("SELECT * FROM usuarios", (err, results) => {
     if (err) {
@@ -86,7 +97,7 @@ app.get("/usuarios", (req, res) => {
   });
 });
 
-// Formulario editar usuario (Read one)
+
 app.get("/usuarios/editar/:id", (req, res) => {
   const { id } = req.params;
   db.query("SELECT * FROM usuarios WHERE id = ?", [id], (err, results) => {
@@ -96,7 +107,7 @@ app.get("/usuarios/editar/:id", (req, res) => {
   });
 });
 
-// Actualizar usuario (Update)
+
 app.post("/usuarios/editar/:id", (req, res) => {
   const { id } = req.params;
   const { numerotel, nombre, correo, localidad, contra } = req.body;
@@ -108,7 +119,7 @@ app.post("/usuarios/editar/:id", (req, res) => {
   });
 });
 
-// Eliminar usuario (Delete)
+
 app.get("/usuarios/eliminar/:id", (req, res) => {
   const { id } = req.params;
   db.query("DELETE FROM usuarios WHERE id = ?", [id], (err, result) => {
@@ -117,9 +128,7 @@ app.get("/usuarios/eliminar/:id", (req, res) => {
   });
 });
 
-// --- CRUD MASCOTAS ---
 
-// Guardar mascota (Create)
 app.post("/registro2", (req, res) => {
   console.log(req.body);
   const { nombre, edad, tiempoEdad, sexo, caracteristicas, fecha } = req.body;
@@ -134,7 +143,7 @@ app.post("/registro2", (req, res) => {
   });
 });
 
-// Listar mascotas (Read)
+
 app.get("/mascotas", (req, res) => {
   db.query("SELECT * FROM mascotas", (err, results) => {
     if (err) return res.send("Error al obtener mascotas");
@@ -142,7 +151,7 @@ app.get("/mascotas", (req, res) => {
   });
 });
 
-// Formulario editar mascota (Read one)
+
 app.get("/mascotas/editar/:id", (req, res) => {
   const { id } = req.params;
   db.query("SELECT * FROM mascotas WHERE id = ?", [id], (err, results) => {
@@ -152,7 +161,7 @@ app.get("/mascotas/editar/:id", (req, res) => {
   });
 });
 
-// Actualizar mascota (Update)
+
 app.post("/mascotas/editar/:id", (req, res) => {
   const { id } = req.params;
   const { nombre, edad, tiempoEdad, sexo, caracteristicas, fecha } = req.body;
@@ -164,7 +173,7 @@ app.post("/mascotas/editar/:id", (req, res) => {
   });
 });
 
-// Eliminar mascota (Delete)
+
 app.get("/mascotas/eliminar/:id", (req, res) => {
   const { id } = req.params;
   db.query("DELETE FROM mascotas WHERE id = ?", [id], (err, result) => {
@@ -173,7 +182,7 @@ app.get("/mascotas/eliminar/:id", (req, res) => {
   });
 });
 
-// --- Iniciar sesión (simplificado, solo mostrar formulario por ahora) ---
+
 app.post("/iniciar", (req, res) => {
   const { correo, contra } = req.body;
 
@@ -190,7 +199,7 @@ app.post("/iniciar", (req, res) => {
         return res.render("iniciar", { titulo: "Iniciar Sesión", error: "Correo o contraseña incorrectos." });
       }
 
-      // Si todo va bien, redirige al registro de mascotas
+     
       res.redirect("/registro2");
     }
   );
