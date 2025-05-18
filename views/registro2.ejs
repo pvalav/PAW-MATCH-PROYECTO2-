@@ -11,14 +11,12 @@
     <img src="PAW MATCH LOGO.png" alt="logo" id="pwmlogo">
     <button class="btn" onclick="window.location.href='/ayuda'">Acerca de nosotros/ayuda</button>
 
-    
-  <button class="btn" onclick="bontonregresa()" id="#boton1">Regresar</button>
+  <button class="btn" onclick="window.location.href='/'" id="#boton1">Regresar</button>
   
   
 </div>
-    <button class="btn">Mascotas extraviadas</button>
-    <input type="text" placeholder="Busca a tu peludo" class="search" id="searchInput"/>
-    <button class="search-btn" onclick="buscar()">🔍</button>
+    <button class="btn" onclick="window.location.href='/extraviados'">Mascotas extraviadas</button>
+    <input type="text" placeholder="Busca a tu peludo" class="search" id="searchInput" disabled/><button class="search-btn" onclick="buscar()" disabled>🔍</button>
   </header>
 
   <main class="form-container">
@@ -26,7 +24,7 @@
     <div class="form-content">
       <form class="pet-form" method="post" action="/registro2">
         <h2>Datos de tu mascota</h2>
-        <input type="text" placeholder="Nombre" id="nombre" name=""  required />
+        <input type="text" placeholder="Nombre" id="nombre" name="nombre"  required />
         <div class="row">
           <input type="number" placeholder="Edad" id="edad" name="edad"  required />
           <select id="tiempoEdad" name="tiempoEdad" id="tiempoEdad" required>
@@ -47,22 +45,10 @@
         <button type="submit" class="salvarbtn">Guardar</button>
       </form>
 
-      <div class="image-upload">
-        <img src="" alt="Foto de mascota" class="mascota-img" id="preview"/>
-        <input type="file" accept="image/*" id="fotoMascota" style="display: none;" onchange="mostrarFoto(event)"/>
-        <button class="upload-btn" onclick="document.getElementById('fotoMascota').click()">Agrega foto de tu mascota aquí.</button>
-      </div>
+     
     </div>
   </main>
-  <script>
-    function bontonregresa(){
-        if(boton1){
-            window.location.href="/inicio";
-        }if(salvarbtn){
-            
-        }
-
-    }
-  </script>
+  
+ 
 </body>
 </html>

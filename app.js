@@ -4,21 +4,18 @@ const path=require("path");
 const bodyParser = require("body-parser");
 const app = express();
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "",
   database: "pawmatch",
+  port: 3307,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error("Error de conexión:", err);
-    return;
-  }
-  console.log("Conectado a MySQL");
-});
-
+console.log("Pool de conexión MySQL configurado");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -133,7 +130,7 @@ app.post("/registro2", (req, res) => {
 
     
 
-    res.redirect("/mascotas");
+    res.redirect("/extraviados");
   });
 });
 
@@ -197,6 +194,12 @@ app.post("/iniciar", (req, res) => {
       res.redirect("/registro2");
     }
   );
+});
+app.get("/extraviados", (req, res) => {
+  db.query("SELECT * FROM mascotas", (err, results) => {
+    if (err) return res.send("Error al obtener mascotas perdidas");
+    res.render("extraviados", { mascotas: results, titulo: "Mascotas Perdidas" });
+  });
 });
 
 app.listen(9999, () => {

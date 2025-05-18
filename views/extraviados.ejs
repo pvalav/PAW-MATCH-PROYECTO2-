@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= titulo %></title>
+  <link rel="stylesheet" href="/perdidas.css">
+</head>
+<body>
+  <header class="navbar">
+     <img src="PAW MATCH LOGO.png" alt="logo" id="pwmlogo">
+    <button class="btn" onclick="window.location.href='/ayuda'">Acerca de nosotros/ayuda</button>
+        <button class="btn" onclick="window.location.href='/'">Regresar</button>
+
+    <h1>Mascotas Perdidas</h1>
+    <input type="text" id="buscarInput" placeholder="Buscar por nombre..." />
+    <button onclick="buscar()">Buscar</button>
+  </header>
+
+  <section id="mascotasContenedor">
+    <% mascotas.forEach(m => { %>
+      <div class="anuncio">
+        <h2><%= m.nombre %></h2>
+        <p><strong>Edad:</strong> <%= m.edad %> <%= m.tiempoEdad %></p>
+        <p><strong>Sexo:</strong> <%= m.sexo %></p>
+        <p><strong>Características:</strong> <%= m.caracteristicas %></p>
+        <p><strong>Fecha:</strong> <%= m.fecha.toISOString().split('T')[0] %></p>
+      </div>
+    <% }) %>
+  </section>
+
+  <script>
+    function buscar() {
+      const input = document.getElementById('buscarInput').value.toLowerCase();
+      const anunios = document.querySelectorAll('.anuncio');
+
+      anunios.forEach(anuncio => {
+        const nombre = anuncio.querySelector('h2').textContent.toLowerCase();
+        anuncio.style.display = nombre.includes(input) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
