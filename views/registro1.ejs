@@ -14,8 +14,7 @@
             <button class="btn" onclick="window.location.href='/'">Regresar</button>
 
 
-    <!-- FORMULARIO DE BÚSQUEDA FUNCIONAL -->
-    <form class="search-bar" onsubmit="buscarMascota(event)" >
+    <form class="search-bar" >
       <input type="text" id="busqueda" placeholder="Busca a tu peludo" class="search" disabled/> <button type="submit" disabled>🔍</button>
     </form>
   </header>
@@ -30,7 +29,7 @@
         <input type="text" placeholder="Localidad" name="localidad" id="localidad" required />
         <div style="position: relative;">
   <input type="password" placeholder="Crea una contraseña segura" name="contra" id="contra" required />
-  <span onclick="togglePassword()" id="span1">
+  <span onclick="contraseñaD()" id="span1">
     👁
   </span>
 </div>
@@ -50,34 +49,31 @@
     const numerotel = document.getElementById('numerotel').value;
     const contra = document.getElementById('contra').value;
 
-    // Validar que el nombre solo tenga letras y espacios
     if (!/^[A-Za-z\s]+$/.test(nombre)) {
       alert("El nombre solo debe contener letras.");
       return false;
     }
 
-    // Validar número de teléfono (solo 10 dígitos)
     if (!/^\d{10}$/.test(numerotel)) {
       alert("El número de teléfono debe contener exactamente 10 dígitos.");
       return false;
     }
 
-    // Validar contraseña: solo mayúsculas y números, exactamente 10 caracteres
     if (!/^[A-Z0-9]{10}$/.test(contra)) {
       alert("La contraseña debe tener exactamente 10 caracteres con letras MAYÚSCULAS y números.");
       return false;
     }
 
-    // Si todo está bien, se envía el formulario
+    
     return true;
   }
-  function togglePassword() {
+  function contraseñaD() {
     const input = document.getElementById("contra");
     const icon = document.getElementById("toggleIcon");
     
     if (input.type === "password") {
       input.type = "text";
-      icon.textContent = "🙈"; // Cambia el icono
+      icon.textContent = "👁️";
     } else {
       input.type = "password";
       icon.textContent = "👁";
